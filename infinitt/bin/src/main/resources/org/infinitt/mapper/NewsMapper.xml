@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.infinitt.mapper.NewsMapper">
+  
+  	<insert id="newswrite">
+  		insert into news(title,content,writer)
+		value(#{title},#{content},#{writer})
+  	</insert>
+  	
+  	<insert id="insertSelectKey" >
+  		<selectKey keyProperty="nbno" order="BEFORE" resultType="int">
+  			select ifnull (MAX(nbno), 0 )+1 from news
+  		</selectKey>
+  		insert into news(nbno,title,content,writer)
+		value(#{nbno},#{title},#{content},#{writer})
+  	</insert>
+
+  	<select id="news" resultType="org.infinitt.domain.NewsDTO">
+  		select*from(
+				select @rownum:=@rownum+1 as rownum, b.*
+				from (select @rownum:=0) as tmp, news as b
+		  	 <choose>
+		  	 	<when test="search == null">
+			      where 1=1 order by nbno desc
+			    </when>
+			    <when test="search == 'T'.toString()">
+			      where title like concat('%',#{keyword},'%') order by nbno desc
+			    </when>
+			   	<when test="search == 'C'.toString()">
+			      where content like concat('%',#{keyword},'%') order by nbno desc
+			    </when>
+			    <when test="search == 'W'.toString()">
+			      where writer like concat('%',#{keyword},'%') order by nbno desc
+			    </when>
+			    <when test="search == 'D'.toString()">
+			      where title like concat('%',#{keyword},'%') 
+			      or content like concat('%',#{keyword},'%') order by nbno desc
+			    </when>
+			    <otherwise>
+			      where title like concat('%',#{keyword},'%') 
+			      or content like concat('%',#{keyword},'%') 
+			      or writer like concat('%',#{keyword},'%') order by nbno desc
+			    </otherwise>
+			</choose>
+		) as newsList 
+		<![CDATA[ 
+			where rownum > (#{pageNum}-1)*#{amount} 
+			and rownum <= #{pageNum}*#{amount} 
+		]]> 
+  	</select>
+  	
+
+  	
+  	<select id="newsdetail" resultType="org.infinitt.domain.NewsDTO">
+  		select*from news where nbno=#{nbno}
+  	</select>
+  	
+  	<!-- <select id="newsdetail2" resultType="org.infinitt.domain.PrevNextDTO">
+  		
+  		select *
+			from 
+			(
+				SELECT  IFNULL(LAG(title) OVER (ORDER BY nbno), '') AS pretitle
+					, IFNULL(LAG(regdate) OVER (ORDER BY nbno), '') AS preregdate
+			        , IFNULL(LAG(nbno) OVER (ORDER BY nbno), '') AS prenbno
+					, IFNULL(LEAD(title) OVER (ORDER BY nbno), '') AS nexttitle
+					, IFNULL(LEAD(regdate) OVER (ORDER BY nbno), '') AS nextregdate
+					, IFNULL(LEAD(nbno) OVER (ORDER BY nbno), '') AS nextnbno
+					, nbno
+				FROM news
+				ORDER BY nbno
+			) prevnext
+			where nbno = #{nbno}
+			
+		  
+  	</select> -->
+  	
+  	
+  	<update id="cntupdate">
+  		update news
+		set cnt = cnt + 1
+		where nbno=#{nbno}
+  	</update>
+  	
+  	<update id="newsmodify">
+  		update news
+		set title=#{title}, 
+			content=#{content}, 
+			regdate=now()
+		where nbno=#{nbno}
+  	</update>
+  	
+  	<delete id="newsremove">
+  		delete from news where nbno=#{nbno}
+  	</delete>
+  	
+  	<select id="getTotalCount" resultType="int">
+  		select count(*) from news
+  		<!-- <choose>
+	  	 	<when test="search == null">
+		      where 1=1
+		    </when>
+		    <when test="search == 'T'.toString()">
+		      where title like concat('%',#{keyword},'%')
+		    </when>
+		   	<when test="search == 'C'.toString()">
+		      where content like concat('%',#{keyword},'%')
+		    </when>
+		    <when test="search == 'W'.toString()">
+		      where writer like concat('%',#{keyword},'%')
+		    </when>
+		    <when test="search == 'D'.toString()">
+		      where title like concat('%',#{keyword},'%') 
+		      or content like concat('%',#{keyword},'%')
+		    </when>
+		    <otherwise>
+		      where title like concat('%',#{keyword},'%') 
+		      or content like concat('%',#{keyword},'%') 
+		      or writer like concat('%',#{keyword},'%')
+		    </otherwise>
+		</choose> -->
+  	</select>
+  	
+  	
+  	<select id="getNews" resultType="org.infinitt.domain.NewsDTO">
+  		select * from news order by regdate asc limit 1, 5
+  	</select>
+  	
+  	
+  	
+  	
+  	
+  </mapper>

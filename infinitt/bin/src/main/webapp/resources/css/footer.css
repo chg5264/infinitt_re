@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+footer.footer {
+  width : 1200px;
+  height: 200px;
+  
+  margin : 0 auto;
+
+  
+  padding : 20px 0;
+  box-sizing : border-box;
+
+  /* background-color: #FFD11F; */
+}

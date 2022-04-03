@@ -1,0 +1,509 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+    
+}
+
+body{
+    font-size: 18px;
+    line-height: 20px;
+    background: linear-gradient(to right, #014b89 0%,#fcf59d 100%);
+    /* background-color: rgba(66, 64, 64,0.8) ; */
+
+
+    position : relative;
+
+}
+
+ul, li{
+    list-style: none;
+
+}
+
+img{
+    vertical-align: top;
+    display: block;
+}
+
+a{
+    text-decoration: none;
+    color : #333;
+}
+
+.prevPage{
+    position : fixed;
+    left : 80px;
+    top : 40px;
+    
+    width : 90px;
+    height : 90px;
+    
+    background-image: url(../img/infinitt_logo_circle.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    border-radius : 45px;
+    
+    z-index : 99;
+    
+    
+}
+
+.prevPage a{
+	
+	display : block;
+	
+   	width : 100%;
+   	height : 100%;
+   	
+   	color : #777;
+    font-size : 20px;
+    
+    transition: all 10s;
+    transition-timing-function : ease;
+}
+
+.prevPage a:hover .prev_p{
+
+	opacity : 1;
+	
+}
+
+.prev_p{
+	
+	width : 90px;
+    height : 90px;
+    
+    background-color : #fcf59d;
+    border : 1px soild #ced4da; 
+    
+    border-radius : 45px;
+    text-align : center;
+    line-height : 90px;
+    
+    opacity : 0;
+    transition : all 0.5s;
+    /* transition-duration:2s;
+    transition-delay:1s; */
+    transition-timing-function: ease;
+    
+	
+}
+
+
+.wrap{
+    width: 1800px;
+    margin: 0 auto;
+    
+    padding : 150px 0 500px 0;
+    
+    position: relative;
+
+}
+
+.text-center{
+    margin-bottom: 2rem;
+}
+
+#essayTitle{
+	
+	font-size : 50px;
+	
+	color : #fff;
+    position : absolute;
+    top:350px;
+    left : 200px;
+	
+}
+
+.img{
+	width: 100%;
+	margin-bottom : 60px;
+}
+
+.img img{
+	width: 100%;
+}
+
+
+.aboutus{
+    
+    padding-top : 100px;
+    box-sizing : border-box;
+ 
+}
+
+
+.aboutus1{
+    width: 100%;
+    height: 700px;
+    background-image: url(../img/aboutus1.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    text-align : right;
+
+
+}
+
+.aboutus1 .title{
+  background: linear-gradient(to left, #fcf59d 0%, #014b89 16%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+   width: 80%;
+   margin: 0 auto;
+
+   height : 55px;
+
+   font-size : 50px;
+	
+	margin-bottom : 20px;
+   line-height : 55px;
+}
+
+#goal{
+    width: 100%;
+    height: 100%;
+
+
+}
+
+
+#goal .goal_box{
+    width: 80%;
+    margin: 0 auto;
+
+    color : #fff;
+	font-size : 22px;
+	line-height : 35px;
+
+}
+
+.aboutus2{
+    width: 100%;
+    height: 700px;
+    background-image: url(../img/aboutus2.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+
+.aboutus2 .title{
+  background: linear-gradient(to right, #014b89 0%, #fcf59d 16%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+   width: 80%;
+   margin: 0 auto;
+
+   height : 55px;
+
+   font-size : 50px;
+	
+	margin-bottom : 20px;
+   line-height : 55px;
+}
+
+.goal_02{
+    width: 100%;
+    height: 100%;
+
+}
+
+
+.goal_02 .goal_box{
+    width: 80%;
+    margin: 0 auto;
+
+    color : #fff;
+	font-size : 22px;
+	line-height : 35px;
+
+}
+
+.aboutus3{
+    width: 100%;
+    height: 700px;
+    background-image: url(../img/aboutus3.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    text-align : right;
+
+}
+
+.aboutus3 .title{
+  background: linear-gradient(to left, #fcf59d 0%, #014b89 16%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+   width: 80%;
+   margin: 0 auto;
+
+   height : 60px;
+
+   font-size : 50px;
+	
+	margin-bottom : 20px;
+   line-height : 55px;
+}
+
+#brand{
+    width: 100%;
+    height: 100%;
+
+}
+
+
+#brand .goal_box{
+    width: 80%;
+    margin: 0 auto;
+
+    color : #fff;
+	font-size : 22px;
+	line-height : 35px;
+
+}
+
+
+
+/*==================================================  */
+
+.brand_01{
+	
+	color : #fff;
+	font-size : 20px;
+	line-height : 28px;
+	
+	
+}
+
+.brand_02{
+	
+	width: 100%;
+	height : 700px;
+    background-image: url(../img/infinitt_background_좌우반전.png);
+    background-repeat: no-repeat;
+    background-size: 105%;
+	
+}
+
+.brand_02 .inner{
+	
+	padding : 60px 0  0 200px;
+	box-sizing : border-box;
+	
+}
+
+.brand_02 .title{
+
+  background: linear-gradient(to right, #014b89 5%, #fcf59d 20%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+   height : 55px;
+
+   font-size : 50px;
+	
+	margin-bottom : 20px;
+   line-height : 55px;
+	
+	
+}
+
+.brand_02 p{
+    color : #fff;
+	font-size : 22px;
+	line-height : 35px;
+	
+    margin-bottom : 20px;
+
+}
+
+.brand_02 .ci_img{
+    width : 350px;
+    height : 150px;
+
+}
+
+.brand_02 .ci_img img{
+    width : 100%;
+    height : 100%;
+
+}
+
+
+
+/*==================================================  */
+
+.aboutus4{
+    width: 100%;
+    height: 2100px;
+    background-image: url(../img/aboutus4.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+
+}
+
+
+#history{
+    width: 100%;
+    height: 100%;
+
+}
+
+#history .sub_title{
+    width: 80%;
+    margin: 0 auto;
+
+    color : #fff;
+	font-size : 22px;
+	line-height : 35px;
+	
+	margin-bottom : 250px;
+
+}
+
+.history_wrap{
+
+	color : #fff;
+	font-size : 25px;
+	line-height : 38px;
+	
+	text-align : center;
+	
+	
+
+}
+
+.history_wrap dt{
+    margin-bottom : 20px;
+    font-size : 35px;
+    color : #fcf59d;
+
+}
+
+.history_wrap dd{
+    margin-bottom : 50px;
+
+}
+
+
+
+#history .h2_wrap{
+	
+	width: 80%;
+    margin: 0 auto;
+	
+	padding-bottom : 40px;
+
+
+}
+
+#history .h2_wrap p{
+	
+	color : #fcf59d;
+	
+	height : 40px;
+
+   	font-size : 30px;
+	
+	margin-bottom : 20px;
+    line-height : 40px;
+
+}
+
+#history .h2_wrap .title{
+	
+	background: linear-gradient(to right, #014b89 0%, #fcf59d 28%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+   height : 55px;
+
+   font-size : 50px;
+	
+	margin-bottom : 20px;
+   line-height : 55px;
+
+
+}
+
+#history .main_title{
+    width: 80%;
+    margin: 0 auto;
+
+	color : #fff;
+	font-size : 30px;
+	line-height : 38px;
+	
+	margin-bottom : 20px;
+
+}
+
+
+
+.aboutus6{
+    width: 100%;
+    height: 1400px;
+    background-image: url(../img/aboutus6.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+
+.history_sec3{
+    width: 100%;
+    height: 100%;
+
+}
+
+.history_sec3 .h2_wrap{
+    width: 80%;
+    margin: 0 auto;
+
+    color : #fff;
+	font-size : 25px;
+	line-height : 38px;
+
+}
+
+.history_sec3 .main_title{
+    width: 80%;
+    margin: 0 auto;
+
+    color : #fff;
+	font-size : 30px;
+	line-height : 38px;
+	
+	margin-bottom : 20px;
+
+}
+
+.history_sec3 .sub_title{
+    width: 80%;
+    margin: 0 auto;
+
+    color : #fff;
+	font-size : 22px;
+	line-height : 35px;
+	
+	margin-bottom : 210px;
+
+}
+
+.aboutus6 .history_wrap{
+
+	padding-top : 70px;
+	box-sizing : border-box;
+
+
+}

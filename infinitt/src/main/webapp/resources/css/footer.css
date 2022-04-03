@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+footer.footer {
+  width : 1200px;
+  height: 300px;
+  
+  margin : 0 auto;
+
+  
+  padding-top : 75px;
+  box-sizing : border-box;
+
+  /* background-color: #FFD11F; */
+}
+
+.inner{
+  font-size: 20px;
+}
+
+.footerLink a{
+  margin-right: 13px;
+
+  text-decoration: none;
+  color: #333;
+}

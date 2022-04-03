@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+  	font-family: 'Gowun Dodum', sans-serif;
+  	font-family: /*'Montserrat',*/'Noto Sans KR','Malgun Gothic', dotum;
+    font-size: 20px;
+    line-height: 20px;
+    color: #333;
+
+    
+}
+
+ul, ol{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color:#333;
+}
+
+img{
+    vertical-align: top;
+    border: 0;
+}
+
+.wrap{
+    /* min-width: 1700px; */
+    width: 1200px;
+    margin: 0 auto;
+
+    position: relative;
+
+}
+
+.text-center{
+    margin-bottom: 2rem;
+}
+
+#essayTitle{
+	
+	font-size : 50px;
+	
+	color : #fff;
+    position : absolute;
+    top:120px;
+    left : 80px;
+	
+}
+
+.img{
+	width: 1200px;
+}
+
+.img img{
+	width: 100%;
+}
+
+.table{
+    margin-top: 25px;
+    text-align: center;
+}
+
+.table .nbon{
+	width: 5%;
+}
+
+.table .title{
+	width: 65%;
+}
+
+.table .writer{
+	width: 10%;
+}
+
+.table .date{
+	width: 14%;
+}
+
+.table .cnt{
+	width: 6%;
+}
+
+.table tbody a{
+	/* display: inline-block; */
+	display: block;
+}
+
+
+.write{
+	border: none;
+}

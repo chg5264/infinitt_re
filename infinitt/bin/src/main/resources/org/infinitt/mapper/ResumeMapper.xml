@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.infinitt.mapper.ResumeMapper">
+
+	<insert id="resume">
+		<selectKey keyProperty="rbno" order="BEFORE" resultType="int">
+  			select ifnull (MAX(rbno), 0 )+1 from resume
+  		</selectKey>
+  		insert into resume(title,name,birth,gender,email,tel,career,pay,region,school_type,school_name,major,grades,lisence_type,awards_name,agency,pass,intit,intxt, job)
+		values(#{title},#{name},#{birth},#{gender},#{email},#{tel},#{career},#{pay},#{region},#{school_type},#{school_name},#{major},#{grades},#{lisence_type},#{awards_name},#{agency},#{pass},#{intit},#{intxt}, #{job})
+		
+		<!-- insert into resume(intit,intxt)
+		values(#{intit},#{intxt}) -->
+  	</insert>
+  	
+  	<insert id="insertSelectKey" >
+  		<selectKey keyProperty="rbno" order="BEFORE" resultType="int">
+  			select ifnull (MAX(rbno), 0 )+1 from resume
+  		</selectKey>
+  		insert into resume(rbno,title,name)
+		value(#{rbno},#{title},#{name})
+  	</insert>
+
+  	<select id="resumelist" resultType="org.infinitt.domain.ResumeDTO">
+  		select*from(
+				select @rownum:=@rownum+1 as rownum, b.*
+				from (select @rownum:=0) as tmp, resume as b
+		  	 <choose>
+		  	 	<when test="search == null">
+			      where 1=1 order by rbno desc
+			    </when>
+			    <when test="search == 'T'.toString()">
+			      where title like concat('%',#{keyword},'%') order by rbno desc
+			    </when>
+			   	<when test="search == 'C'.toString()">
+			      where content like concat('%',#{keyword},'%') order by rbno desc
+			    </when>
+			    <when test="search == 'W'.toString()">
+			      where writer like concat('%',#{keyword},'%') order by rbno desc
+			    </when>
+			    <otherwise> <!-- test="search == 'D'.toString()" -->
+			      where title like concat('%',#{keyword},'%') 
+			      or content like concat('%',#{keyword},'%') order by rbno desc
+			    </otherwise>
+
+			</choose>
+		) as resumeList 
+		<![CDATA[ 
+			where rownum > (#{pageNum}-1)*#{amount} 
+			and rownum <= #{pageNum}*#{amount} 
+		]]> 
+  	</select>
+  	
+
+  	
+  	<select id="resume_m" resultType="org.infinitt.domain.ResumeDTO">
+  		select*from resume where rbno=#{rbno}
+  	</select>
+  	
+   	<!-- <select id="resume_lisence" resultType="org.infinitt.domain.ResumeDTO">
+		 select lisence_type, awards_name, agency, pass
+		 
+		 from (
+		 
+		(select @rownum:=@rownum+1 rownum, substring_index(substring_index((select lisence_type from resume where rbno=#{rbno}),',',1),',',-1) lisence_type
+		 union all
+		select @rownum:=@rownum+1 rownum, substring_index(substring_index((select lisence_type from resume where rbno=#{rbno}),',',2),',',-1) lisence_type
+		 union all
+		select @rownum:=@rownum+1 rownum, substring_index(substring_index((select lisence_type from resume where rbno=#{rbno}),',',3),',',-1) lisence_type) as lisence_type
+		
+		join  
+		 
+		(select @rownum2:=@rownum2+1 rownum2, substring_index(substring_index((select awards_name from resume where rbno=#{rbno}),',',1),',',-1) awards_name
+		 union all
+		select @rownum2:=@rownum2+1 rownum2, substring_index(substring_index((select awards_name from resume where rbno=#{rbno}),',',2),',',-1) awards_name
+		 union all
+		select @rownum2:=@rownum2+1 rownum2, substring_index(substring_index((select awards_name from resume where rbno=#{rbno}),',',3),',',-1) awards_name) as awards_name  
+		
+		on (lisence_type.rownum) = (awards_name.rownum2) 
+		
+		join
+		
+		(select @rownum3:=@rownum3+1 rownum3, substring_index(substring_index((select agency from resume where rbno=#{rbno}),',',1),',',-1) agency
+		 union all
+		select @rownum3:=@rownum3+1 rownum3, substring_index(substring_index((select agency from resume where rbno=#{rbno}),',',2),',',-1) agency
+		 union all
+		select @rownum3:=@rownum3+1 rownum3, substring_index(substring_index((select agency from resume where rbno=#{rbno}),',',3),',',-1) agency) as agency 
+		
+		on (awards_name.rownum2) = (agency.rownum3) 
+		
+		join
+		 
+		(select @rownum4:=@rownum4+1 rownum4, substring_index(substring_index((select pass from resume where rbno=#{rbno}),',',1),',',-1) pass
+		 union all
+		select @rownum4:=@rownum4+1 rownum4, substring_index(substring_index((select pass from resume where rbno=#{rbno}),',',2),',',-1) pass
+		 union all
+		select @rownum4:=@rownum4+1 rownum4, substring_index(substring_index((select pass from resume where rbno=#{rbno}),',',3),',',-1) pass) as pass 
+		
+		on (agency.rownum3) = (pass.rownum4) )
+  	</select> 	 -->
+  	
+  	<select id="resume_lisence" resultType="org.infinitt.domain.ResumeDTO">
+		 select rbno, substring_index(substring_index(lisence_type,',',1),',',-1) as lisence_type,
+					 substring_index(substring_index(awards_name,',',1),',',-1) as awards_name,
+		             substring_index(substring_index(agency,',',1),',',-1) as agency,
+		             substring_index(substring_index(pass,',',1),',',-1) as pass
+		from resume
+		where rbno=#{rbno}
+		union all
+		select rbno, substring_index(substring_index(lisence_type,',',2),',',-1) as lisence_type,
+					 substring_index(substring_index(awards_name,',',2),',',-1) as awards_name,
+		             substring_index(substring_index(agency,',',2),',',-1) as agency,
+		             substring_index(substring_index(pass,',',2),',',-1) as pass
+		from resume
+		where rbno=#{rbno}
+		union all
+		select rbno, substring_index(substring_index(lisence_type,',',3),',',-1) as lisence_type,
+					 substring_index(substring_index(awards_name,',',3),',',-1) as awards_name,
+		             substring_index(substring_index(agency,',',3),',',-1) as agency,
+		             substring_index(substring_index(pass,',',3),',',-1) as pass
+		from resume
+		where rbno=#{rbno}
+  	</select> 	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+ 
+  	
+  	<select id="getTotalCount" resultType="int">
+  		select count(*) from resume
+  	</select>
+</mapper>

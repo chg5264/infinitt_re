@@ -1,0 +1,206 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Gowun Dodum', sans-serif;
+	font-size: 18px;
+    line-height: 20px;
+    color: #333;
+}
+
+ul, ol{
+    list-style: none;
+}
+
+a{
+	color:#333;
+    text-decoration: none;
+}
+
+img{
+    vertical-align: top;
+    border: 0;
+}
+
+.wrap{
+    min-width: 1240px;
+
+}
+
+.board_container{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#nbno{
+	visibility: hidden;
+}
+
+.bcc_header{
+	display:flex;
+	justify-content : space-between;
+	
+	width: 100%;
+	height : 80px;
+    padding: 5px 0;
+    border-bottom: 1px solid #bbb;
+    
+    /* background-color: #ffca2c; */
+    /* background-color: rgb(255, 252, 240); */
+    background-color: rgb(239, 239, 239);
+    
+	
+}
+
+
+.bcc_header1{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 40px;
+    
+    text-align : center;
+    
+}
+
+.bcc_header1 h2{
+	font-size : 30px;
+	line-height: 60px;
+}
+
+
+.bcc_header2{
+	width : 200px;
+    margin: 10px 20px;
+    text-align : right;    
+
+}
+
+#bcc_date{
+	height : 50%;
+	margin-bottom: 0;
+}
+
+#bcc_nameNwatch{
+	display : flex;
+	height : 50%;
+	text-align : right;
+	
+}
+
+.bcc_header2 .nickname{
+    width : 50%;
+	margin-bottom: 0;
+}
+
+.bcc_header2 .watch{
+    width : 50%;
+	margin-bottom: 0;
+}
+
+.bcc_header2 .nickname, .count{
+    color: #333;
+}
+
+#uploadResult ul li{
+	text-align: center;
+}
+
+#uploadResult ul li img{
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.bbc_container{
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    /* border-top: 1px solid #bbb; */
+    border-bottom: 1px solid #bbb;
+}
+
+.bbc_container p{
+    margin: 20px 16px;
+    line-height: 40px;
+}
+ 
+.board_btn{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.board_btn a{
+	display : inline-block;
+	width: 80px;
+    height: 35px;
+    
+    text-align : center;
+    line-height : 35px;
+
+
+    border-radius: 20px;
+    
+    
+    color: #ffc107;
+    border:  1px solid #ffc107;
+		
+	margin-top : 10px;
+    cursor: pointer;
+    
+}
+
+.board_btn b_btn{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+}
+
+.write{
+   display : inline-block;  
+}
+
+.board_btn .d_modal{
+	display : inline-block;
+	width: 80px;
+    height: 35px;
+    background-color: transparent;
+    text-align : center;
+    line-height : 35px;
+
+
+    border-radius: 20px;
+    
+    
+    color: #ffc107;
+    border:  1px solid #ffc107;
+		
+	margin-top : 10px;
+    cursor: pointer;
+}
+/* 
+
+
+.board_btn .b_write{
+    background-color: rgb(153, 177, 161);
+} */
+
+.modal-content{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.modal-header{
+	border-bottom: none;
+}
+
+.modal-body{
+	padding: 0.5rem 2rem;
+}
+
+.modal-footer{
+	border-top: none;
+}

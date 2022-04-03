@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.infinitt.mapper.AttachMapper">
+
+  	<!-- attach테이블에 insert -->
+  	<insert id="insert">
+  		insert into attach(uuid,uploadpath,filename,image,bno)
+		values(#{uuid},#{uploadPath},#{fileName},#{image},#{bno});<!-- AttachFileDTO의 값과 일치 -->
+  	</insert>
+  	
+  	<insert id="insert1">
+  		insert into attach(uuid,uploadpath,filename,image,nbno)
+		values(#{uuid},#{uploadPath},#{fileName},#{image},#{nbno});<!-- AttachFileDTO의 값과 일치 -->
+  	</insert>
+  	
+  	<insert id="rinsert">
+  		insert into attach(uuid,uploadpath,filename,image,rbno)
+		values(#{uuid},#{uploadPath},#{fileName},#{image},#{rbno});<!-- AttachFileDTO의 값과 일치 -->
+  	</insert>
+  	
+  	<delete id="delete">
+ 		delete from attach where uuid = #{uuid}
+ 	</delete>
+ 	
+  	<select id="fileList" resultType="org.infinitt.domain.AttachFileDTO"><!-- 넘겨야 하는 곳 -->
+  		select*from attach where bno=#{bno};
+  	</select>
+
+
+	<select id="fileList1" resultType="org.infinitt.domain.AttachFileDTO"><!-- 넘겨야 하는 곳 -->
+  		select*from attach where nbno=#{nbno};
+  	</select>
+  	
+  	<select id="rfileList" resultType="org.infinitt.domain.AttachFileDTO"><!-- 넘겨야 하는 곳 -->
+  		select*from attach where rbno=#{rbno};
+  	</select>
+  	
+  	<update id="fileListPost" ><!-- 넘겨야 하는 곳 -->
+	  	update attach
+		set uuid=#{uuid}, 
+		fileName=#{fileName},
+		image=#{image},
+		fileCallPath=#{fileCallPath} 
+		where bno=#{bno}
+	</update>
+
+  	<update id="fileListPost1" ><!-- 넘겨야 하는 곳 -->
+	  	update attach
+		set uuid=#{uuid}, 
+		fileName=#{fileName},
+		image=#{image},
+		fileCallPath=#{fileCallPath} 
+		where nbno=#{nbno}
+	</update>
+	
+	<update id="rfileListPost" ><!-- 넘겨야 하는 곳 -->
+	  	update attach
+		set uuid=#{uuid}, 
+		fileName=#{fileName},
+		image=#{image},
+		fileCallPath=#{fileCallPath} 
+		where rbno=#{rbno}
+	</update>
+	
+	<select id="imgGet" resultType="org.infinitt.domain.AttachFileDTO"><!-- 넘겨야 하는 곳 -->
+  		select concat(replace(uploadpath,'\\','/'),'/',uuid,'_',filename) as filename from attach where bno=#{bno};
+  	</select>
+  	
+  	
+</mapper>

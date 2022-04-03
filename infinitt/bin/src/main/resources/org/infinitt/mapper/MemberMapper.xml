@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.infinitt.mapper.MemberMapper">
+	<insert id= "insert">
+		insert into member(id,password,name,year,month,day,gender,email)
+		values(#{id},#{password},#{name},#{year},#{month},#{day},#{gender},#{email})
+	
+	</insert> 
+	
+	<select id="login" resultType="org.infinitt.domain.MemberDTO">
+		select * 
+		from member
+		where id=#{id} 
+		and password=#{password} 	
+	
+	</select>
+
+</mapper>
+
+<!-- a -->
